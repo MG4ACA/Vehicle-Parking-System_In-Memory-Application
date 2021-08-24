@@ -1,3 +1,5 @@
+package lk.ijse.parkingSystem;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +15,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../src/view/DashBoardForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../parkingSystem/view/DashBoardForm.fxml"))));
         primaryStage.show();
     }
 }

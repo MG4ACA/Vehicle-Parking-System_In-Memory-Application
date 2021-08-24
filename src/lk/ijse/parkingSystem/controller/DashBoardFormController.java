@@ -1,4 +1,4 @@
-package controller;
+package lk.ijse.parkingSystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +17,7 @@ public class DashBoardFormController {
     public Label lblParkingSlot;
 
     public void parkVehicleOnAction(ActionEvent actionEvent) {
+
     }
 
     public void onDeliveryShiftOnAction(ActionEvent actionEvent) {
@@ -24,7 +25,9 @@ public class DashBoardFormController {
 
     public void managementLogInOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ManagementLoginFrom.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/MngLoginFrom.fxml"))));
+        stage.show();
+
     }
 
 }
