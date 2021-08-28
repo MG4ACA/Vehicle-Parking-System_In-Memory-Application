@@ -17,7 +17,7 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="149.0" prefHeight="27.0" prefWidth="104.0" text="Vehicle Type" textAlignment="RIGHT">
+      <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="143.0" prefHeight="27.0" prefWidth="104.0" text="Vehicle Type" textAlignment="RIGHT">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -27,7 +27,7 @@
          </font></Label>
       <ComboBox fx:id="comboSelectVehicle" layoutX="122.0" layoutY="83.0" onAction="#loadVehicleTypeOnAction" prefHeight="27.0" prefWidth="214.0" promptText="Vehicle Number" />
       <ComboBox fx:id="comboDriver" layoutX="122.0" layoutY="203.0" prefHeight="27.0" prefWidth="214.0" promptText="Driver Name" />
-      <Label fx:id="lblVehicleType" layoutX="122.0" layoutY="149.0" prefHeight="27.0" prefWidth="214.0" style="-fx-background-color: #A2BCC6;">
+      <Label fx:id="lblVehicleType" layoutX="122.0" layoutY="143.0" prefHeight="27.0" prefWidth="214.0" style="-fx-background-color: #A2BCC6;">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -43,12 +43,12 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Button layoutX="436.0" layoutY="170.0" mnemonicParsing="false" onAction="#parkVehicleOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="Park Vehicle">
+      <Button fx:id="btnParkVehicle" layoutX="436.0" layoutY="170.0" mnemonicParsing="false" onAction="#parkVehicleOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="Park Vehicle">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="436.0" layoutY="228.0" mnemonicParsing="false" onAction="#onDeliveryShiftOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="On Delivery Shift">
+      <Button fx:id="btnOnDelivery" layoutX="436.0" layoutY="228.0" mnemonicParsing="false" onAction="#onDeliveryShiftOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="On Delivery Shift">
          <font>
             <Font size="13.0" />
          </font>

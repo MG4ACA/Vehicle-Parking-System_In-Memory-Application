@@ -8,9 +8,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.parkingSystem.model.Arrays;
+import lk.ijse.parkingSystem.memory.DriverArray;
+import lk.ijse.parkingSystem.memory.VehicleArray;
 import lk.ijse.parkingSystem.model.Vehicle;
-import sun.security.mscapi.CPublicKey;
 
 public class VehicleAddFormController {
     public TextField txtMaxWeight;
@@ -31,7 +31,7 @@ public class VehicleAddFormController {
     public void addVehicleOnAction(ActionEvent actionEvent) {
 
 
-        boolean b = Arrays.getInstance().setArrayVehicles(new Vehicle(txtNumber.getText(), (String) comboVehicleType.getValue(), txtMaxWeight.getText(), Integer.parseInt(txtPassengers.getText())));
+        boolean b = VehicleArray.getInstance().setArrayVehicles(new Vehicle(txtNumber.getText(), (String) comboVehicleType.getValue(), txtMaxWeight.getText(), Integer.parseInt(txtPassengers.getText())));
         if (b){
             new Alert(Alert.AlertType.CONFIRMATION,"Vehicle Saved").show();
         }else {

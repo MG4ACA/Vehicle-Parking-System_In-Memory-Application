@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.parkingSystem.model.Arrays;
+import lk.ijse.parkingSystem.memory.DriverArray;
 import lk.ijse.parkingSystem.model.Driver;
 
 public class DriverAddFormController {
@@ -17,7 +17,7 @@ public class DriverAddFormController {
     public AnchorPane apAddDriver;
 
     public void addDriverOnAction(ActionEvent actionEvent) {
-        boolean b = Arrays.getInstance().setArrayDrivers(new Driver(txtName.getText(), txtNIC.getText(), txtLicense.getText(), txtAddress.getText(), txtContact.getText()));
+        boolean b = DriverArray.getInstance().setArrayDrivers(new Driver(txtName.getText(), txtNIC.getText(), txtLicense.getText(), txtAddress.getText(), txtContact.getText()));
         if (b){
             new Alert(Alert.AlertType.CONFIRMATION,"Driver Saved").show();
         }else {
