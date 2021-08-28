@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="336.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.VehicleAddFormController">
+<AnchorPane fx:id="apAddVehicle" prefHeight="336.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.VehicleAddFormController">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="92.0" prefHeight="27.0" prefWidth="104.0" text="Vehicle Number" textAlignment="RIGHT">
          <font>
@@ -19,18 +19,13 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboVehicleType" layoutX="484.0" layoutY="92.0" prefHeight="27.0" prefWidth="118.0" />
+      <ComboBox fx:id="comboVehicleType" layoutX="399.0" layoutY="92.0" prefHeight="27.0" prefWidth="203.0" promptText="Select Vehicle Type" />
       <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="198.0" prefHeight="27.0" prefWidth="128.0" text="No of Passengers " textAlignment="RIGHT">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
       <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="145.0" prefHeight="27.0" prefWidth="128.0" text="Maximum Weight" textAlignment="RIGHT">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="339.0" layoutY="92.0" prefHeight="27.0" prefWidth="128.0" text="Vehicle Type" textAlignment="RIGHT">
          <font>
             <Font size="13.0" />
          </font>

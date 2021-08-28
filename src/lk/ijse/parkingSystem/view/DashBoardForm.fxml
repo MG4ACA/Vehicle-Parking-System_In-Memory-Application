@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="475.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.DashBoardFormController">
+<AnchorPane fx:id="anchorPane" prefHeight="475.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.DashBoardFormController">
    <children>
       <Label layoutY="12.0" prefHeight="27.0" prefWidth="711.0" style="-fx-background-color: #A2BCC6;" text="   Parking System">
          <font>
@@ -25,15 +25,15 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <ComboBox fx:id="comboSelectVehicle" layoutX="122.0" layoutY="83.0" prefHeight="27.0" prefWidth="214.0" />
-      <ComboBox fx:id="comboDriver" layoutX="122.0" layoutY="203.0" prefHeight="27.0" prefWidth="214.0" />
+      <ComboBox fx:id="comboSelectVehicle" layoutX="122.0" layoutY="83.0" onAction="#loadVehicleTypeOnAction" prefHeight="27.0" prefWidth="214.0" promptText="Vehicle Number" />
+      <ComboBox fx:id="comboDriver" layoutX="122.0" layoutY="203.0" prefHeight="27.0" prefWidth="214.0" promptText="Driver Name" />
       <Label fx:id="lblVehicleType" layoutX="122.0" layoutY="149.0" prefHeight="27.0" prefWidth="214.0" style="-fx-background-color: #A2BCC6;">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label fx:id="lblRealTime" layoutX="438.0" layoutY="79.0" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6;">
+      <Label fx:id="lblRealDate" layoutX="436.0" layoutY="63.0" prefHeight="27.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6;" text="505220" textFill="#190ca6">
          <font>
-            <Font size="13.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
          </font></Label>
       <Label fx:id="lblParkingSlot" layoutX="62.0" layoutY="302.0" prefHeight="85.0" prefWidth="291.0" style="-fx-background-color: #A2BCC6;">
          <font>
@@ -43,17 +43,27 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Button layoutX="438.0" layoutY="138.0" mnemonicParsing="false" onAction="#parkVehicleOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="Park Vehicle">
+      <Button layoutX="436.0" layoutY="170.0" mnemonicParsing="false" onAction="#parkVehicleOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="Park Vehicle">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="438.0" layoutY="197.0" mnemonicParsing="false" onAction="#onDeliveryShiftOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="On Delivery Shift">
+      <Button layoutX="436.0" layoutY="228.0" mnemonicParsing="false" onAction="#onDeliveryShiftOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6; -fx-border-radius: 100px;" text="On Delivery Shift">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="438.0" layoutY="303.0" mnemonicParsing="false" onAction="#managementLogInOnAction" prefHeight="38.0" prefWidth="230.0" style="-fx-border-radius: 100px;" text="Management Log in">
+      <Button fx:id="btnLogIn" layoutX="436.0" layoutY="334.0" mnemonicParsing="false" onAction="#managementLogInOnAction" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" prefHeight="38.0" prefWidth="230.0" style="-fx-border-radius: 100px;" text="Management Log in">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblRealTime" alignment="CENTER" layoutX="436.0" layoutY="90.0" prefHeight="61.0" prefWidth="230.0" style="-fx-background-color: #A2BCC6;" text="12.56" textFill="#112476">
+         <font>
+            <Font name="Berlin Sans FB" size="42.0" />
+         </font>
+      </Label>
+      <Button layoutX="280.0" layoutY="409.0" mnemonicParsing="false" onAction="#refreshOnAction" prefHeight="38.0" prefWidth="172.0" style="-fx-border-radius: 100px;" text="Refresh">
          <font>
             <Font size="13.0" />
          </font>

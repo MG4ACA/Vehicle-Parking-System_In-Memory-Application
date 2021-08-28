@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="475.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.MngIPDashBoardFormController">
+<AnchorPane prefHeight="475.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.itrash.MngIPDashBoardFormController">
    <children>
       <Label layoutY="12.0" prefHeight="27.0" prefWidth="711.0" style="-fx-background-color: #A2BCC6;" text="   Parking System">
          <font>
