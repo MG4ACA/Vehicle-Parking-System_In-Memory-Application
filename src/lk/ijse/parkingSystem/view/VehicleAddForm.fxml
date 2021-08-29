@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apAddVehicle" prefHeight="336.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.VehicleAddFormController">
+<AnchorPane fx:id="apAddVehicle" prefHeight="381.0" prefWidth="646.0" style="-fx-background-color: #ced6e0;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.VehicleAddFormController">
    <children>
-      <Label alignment="CENTER_RIGHT" layoutX="36.0" layoutY="92.0" prefHeight="27.0" prefWidth="104.0" text="Vehicle Number" textAlignment="RIGHT">
+      <Label layoutX="17.0" layoutY="61.0" pickOnBounds="false" prefHeight="306.0" prefWidth="615.0" style="-fx-background-color: #ffffff; -fx-background-radius: 13px;" />
+      <Label alignment="CENTER_RIGHT" layoutX="75.0" layoutY="93.0" prefHeight="27.0" prefWidth="110.0" text="Vehicle Number" textAlignment="RIGHT">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="418.0" layoutY="253.0" mnemonicParsing="false" onAction="#addVehicleOnAction" prefHeight="38.0" prefWidth="183.0" style="-fx-border-color: #1e90ff; -fx-background-color: #ffffff;" text="Add Vehicle">
+      <Button layoutX="147.0" layoutY="307.0" mnemonicParsing="false" onAction="#addVehicleOnAction" prefHeight="38.0" prefWidth="351.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="ADD VEHICLE" textFill="WHITE">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
+         <effect>
+            <DropShadow height="56.75" offsetX="6.0" offsetY="6.0" radius="27.875" spread="0.29" width="56.75">
+               <color>
+                  <Color red="0.42089733481407166" green="0.09890837967395782" blue="0.621052622795105" />
+               </color>
+            </DropShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <ComboBox fx:id="comboVehicleType" layoutX="399.0" layoutY="92.0" prefHeight="27.0" prefWidth="203.0" promptText="Select Vehicle Type" />
-      <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="198.0" prefHeight="27.0" prefWidth="128.0" text="No of Passengers " textAlignment="RIGHT">
+      <ComboBox fx:id="comboVehicleType" layoutX="147.0" layoutY="247.0" prefHeight="27.0" prefWidth="351.0" promptText="Select Vehicle Type" style="-fx-background-color: #c67aff;" />
+      <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="196.0" prefHeight="27.0" prefWidth="128.0" text="No of Passengers " textAlignment="RIGHT">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="145.0" prefHeight="27.0" prefWidth="128.0" text="Maximum Weight" textAlignment="RIGHT">
+      <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="143.0" prefHeight="27.0" prefWidth="128.0" text="Maximum Weight" textAlignment="RIGHT">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="-1.0" layoutY="12.0" prefHeight="27.0" prefWidth="647.0" style="-fx-background-color: #A2BCC6;" text="  Add Vehicle">
+      <TextField fx:id="txtMaxWeight" layoutX="217.0" layoutY="141.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
+      <TextField fx:id="txtPassengers" layoutX="217.0" layoutY="194.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
+      <TextField fx:id="txtNumber" layoutX="216.0" layoutY="91.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
+      <Label prefHeight="50.0" prefWidth="646.0" style="-fx-background-color: #4b0082;" text="       ADD VEHICLE" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="txtMaxWeight" layoutX="171.0" layoutY="143.0" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: #A2BCC6;" />
-      <TextField fx:id="txtPassengers" layoutX="171.0" layoutY="196.0" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: #A2BCC6;" />
-      <TextField fx:id="txtNumber" layoutX="171.0" layoutY="90.0" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: #A2BCC6;" />
    </children>
 </AnchorPane>
