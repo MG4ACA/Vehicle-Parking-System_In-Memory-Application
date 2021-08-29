@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="475.0" prefWidth="638.0" style="-fx-background-color: #ced6e0;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.ManagerDashBoardFormController">
+   <children>
+      <Label layoutX="12.0" layoutY="50.0" pickOnBounds="false" prefHeight="416.0" prefWidth="686.0" style="-fx-background-color: #ffffff; -fx-background-radius: 13px;" />
+      <TableView fx:id="tblInParking" layoutX="36.0" layoutY="141.0" prefHeight="302.0" prefWidth="638.0" style="-fx-background-color: #ffffff; -fx-background-radius: 12px;">
+         <columns>
+            <TableColumn fx:id="colVNumber" prefWidth="142.39996910095215" text="Vehicle Number" />
+            <TableColumn fx:id="colVTYpe" prefWidth="183.20001220703125" text="Vehicle Type" />
+            <TableColumn fx:id="colPSlot" prefWidth="150.4000244140625" text="Parking Slot" />
+            <TableColumn fx:id="colPTime" prefWidth="157.60003662109375" text="Parked Time" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="comboSelectType" layoutX="36.0" layoutY="78.0" onAction="#loadTableOnAction" prefHeight="31.0" prefWidth="163.0" promptText="In Parking" style="-fx-background-radius: 6px; -fx-background-color: #c67aff;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <Button layoutX="238.0" layoutY="74.0" mnemonicParsing="false" onAction="#addVehicleOnAction" prefHeight="39.0" prefWidth="143.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="Add Vehicle" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow height="19.81" offsetX="4.0" offsetY="5.0" radius="11.489999999999998" spread="0.17" width="28.15">
+               <color>
+                  <Color red="0.5895958542823792" green="0.26253411173820496" blue="0.7789473533630371" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button layoutX="403.0" layoutY="74.0" mnemonicParsing="false" onAction="#addDriverOnAction" prefHeight="39.0" prefWidth="143.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="Add Driver" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow height="19.81" offsetX="4.0" offsetY="5.0" radius="11.489999999999998" spread="0.17" width="28.15">
+               <color>
+                  <Color red="0.5895958542823792" green="0.26253411173820496" blue="0.7789473533630371" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="btnLogOut" layoutX="566.0" layoutY="74.0" mnemonicParsing="false" onAction="#logOutOnAction" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow height="19.81" offsetX="4.0" offsetY="5.0" radius="11.489999999999998" spread="0.17" width="28.15">
+               <color>
+                  <Color red="0.5895958542823792" green="0.26253411173820496" blue="0.7789473533630371" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <TableView fx:id="tblOnDelivery" layoutX="35.0" layoutY="142.0" prefHeight="302.0" prefWidth="638.0" style="-fx-background-radius: 12px;" visible="false">
+         <columns>
+            <TableColumn fx:id="colOVNumber" prefWidth="143.20001983642578" text="Vehicle Number" />
+            <TableColumn fx:id="colOVType" prefWidth="182.4000244140625" text="Vehicle Type" />
+            <TableColumn fx:id="colDriver" prefWidth="151.19998168945312" text="Driver Name" />
+            <TableColumn fx:id="colLeftTime" prefWidth="216.79998779296875" text="Left Time" />
+         </columns>
+      </TableView>
+      <Label prefHeight="50.0" prefWidth="706.0" style="-fx-background-color: #4b0082;" text="    PARKING SYSTEM" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
