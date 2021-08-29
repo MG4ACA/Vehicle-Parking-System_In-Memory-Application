@@ -15,14 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import lk.ijse.parkingSystem.memory.DriverArray;
-import lk.ijse.parkingSystem.memory.InParkingArray;
-import lk.ijse.parkingSystem.memory.ParkingSlotArray;
-import lk.ijse.parkingSystem.memory.VehicleArray;
-import lk.ijse.parkingSystem.model.Driver;
-import lk.ijse.parkingSystem.model.InParking;
-import lk.ijse.parkingSystem.model.ParkingSlot;
-import lk.ijse.parkingSystem.model.Vehicle;
+import lk.ijse.parkingSystem.memory.*;
+import lk.ijse.parkingSystem.model.*;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -56,7 +50,6 @@ public class DashBoardFormController {
 
         loadDriverComboBox();
         loadVehicleComboBox();
-//        System.out.println(formatter.format(date));
     }
 
 
@@ -65,15 +58,15 @@ public class DashBoardFormController {
 
         boolean b = InParkingArray.getInstance().setArrayInParking(new InParking((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), lblParkingSlot.getText(), getDate()));
         if (b){
-            ParkingSlotArray.getInstance().setArraySlots(new ParkingSlot(lblParkingSlot.getText(),lblVehicleType.getText()));
+            OnDeliveryArray.getInstance().removeArraySlots((String) comboSelectVehicle.getValue());
             new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
-            clearFeilds();
+            clearFields();
         }else {
             new Alert(Alert.AlertType.WARNING,"Something Wrong").show();
         }
     }
 
-    private void clearFeilds() {
+    private void clearFields() {
         lblVehicleType.setText("");
         lblParkingSlot.setText("");
         comboSelectVehicle.setValue(null);
@@ -86,7 +79,14 @@ public class DashBoardFormController {
     }
 
     public void onDeliveryShiftOnAction(ActionEvent actionEvent) {
-
+        boolean b = OnDeliveryArray.getInstance().setArrayOnDelivery(new OnDelivery((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), (String) comboDriver.getValue(), getDate()));
+        if (b){
+            InParkingArray.getInstance().removeArraySlots((String)comboSelectVehicle.getValue() );
+            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
+            clearFields();
+        }else {
+            new Alert(Alert.AlertType.WARNING,"Something Wrong").show();
+        }
     }
 
     public void managementLogInOnAction(ActionEvent actionEvent) throws IOException {
@@ -125,6 +125,7 @@ public class DashBoardFormController {
 
     public void loadVehicleTypeOnAction(ActionEvent actionEvent) {
         btnParkVehicle.setDisable(false);
+        btnOnDelivery.setDisable(false);
 
         for (Vehicle vehicle:arrayVehicles) {
              if (comboSelectVehicle.getValue()==vehicle.getVehicleNumber()){
@@ -134,12 +135,15 @@ public class DashBoardFormController {
              }
         }
         ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayInParking();
-        for (InParking inParking : arrayInParking
-                ) {
-            System.out.println("lol");
+        for (InParking inParking : arrayInParking) {
             if (comboSelectVehicle.getValue()==inParking.getVehicleNumber()){
                 btnParkVehicle.setDisable(true);
-                System.out.println("lolsad");
+            }
+        }
+        ArrayList<OnDelivery> arrayOnDelivery = OnDeliveryArray.getInstance().getArrayOnDelivery();
+        for (OnDelivery  onDelivery: arrayOnDelivery) {
+            if (comboSelectVehicle.getValue()==onDelivery.getVehicleNumber()){
+                btnOnDelivery.setDisable(true);
             }
         }
     }
@@ -153,58 +157,55 @@ public class DashBoardFormController {
                 lblParkingSlot.setText(vanSlotSelector());
                 break;
             case "Cargo Lorry":
-                cargoSlotSelector();
+                lblParkingSlot.setText(cargoSlotSelector());
                 break;
             default:
         }
     }
 
-    private void cargoSlotSelector() {
+    private String cargoSlotSelector() {
+        return String.valueOf(CargoLorry.getInstance().getArrayLorry());
     }
 
     private String vanSlotSelector() {
-        ArrayList<Integer> car=new ArrayList();
-        car.add(1);
-        car.add(2);
-        car.add(3);
-        car.add(4);
-        car.add(12);
-        car.add(13);
-
-
-        ArrayList<Integer> pCar = new ArrayList<>();
-
-        ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayInParking();
-        for (InParking inParking : arrayInParking) {
-            if (inParking.getVehicleType()=="Van"){
-                pCar.add(Integer.valueOf(inParking.getParkingSlot()));
-            }
-        }
-
-        for (int t: pCar) {
-            int z=0;
-            for (int i : car) {
-                if (i==t){
-                    car.remove(z);
-                    break;
-                }
-                z++;
-            }
-        }
-
-        sortCarSlot(car);
-
-        return String.valueOf(car.get(0));
+//        ArrayList<Integer> car=new ArrayList();
+//        car.add(1);
+//        car.add(2);
+//        car.add(3);
+//        car.add(4);
+//        car.add(12);
+//        car.add(13);
+//
+//
+//        ArrayList<Integer> pCar = new ArrayList<>();
+//
+//        ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayOnDelivery();
+//        for (InParking inParking : arrayInParking) {
+//            if (inParking.getVehicleType()=="Van"){
+//                pCar.add(Integer.valueOf(inParking.getParkingSlot()));
+//            }
+//        }
+//
+//        for (int t: pCar) {
+//            int z=0;
+//            for (int i : car) {
+//                if (i==t){
+//                    car.remove(z);
+//                    break;
+//                }
+//                z++;
+//            }
+//        }
+//
+//        sortCarSlot(car);
+//
+        return String.valueOf(Car.getInstance().getArrayCar());
 
     }
 
     private ArrayList<Integer> sortCarSlot(ArrayList<Integer> car) {
         Collections.sort(car);
         return car;
-    }
-
-    public void refreshOnAction(ActionEvent actionEvent) {
-        initialize();
     }
 
     @FXML
