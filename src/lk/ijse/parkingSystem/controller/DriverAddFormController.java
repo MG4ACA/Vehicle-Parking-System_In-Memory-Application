@@ -25,6 +25,7 @@ public class DriverAddFormController {
 //                if (Pattern.compile("^^[B][0-9]{7}$").matcher(txtNIC.getText()).matches()) {
 //                    if (Pattern.compile("^[#.0-9a-zA-Z\\s,-]+$").matcher(txtAddress.getText()).matches()) {
 //                        if (Pattern.compile("^[0-9]{10}$").matcher(txtContact.getText()).matches()) {
+
                             boolean b = DriverArray.getInstance().setArrayDrivers(new Driver(txtName.getText(), txtNIC.getText(), txtLicense.getText(), txtAddress.getText(), txtContact.getText()));
                             if (b) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "Driver Saved").show();

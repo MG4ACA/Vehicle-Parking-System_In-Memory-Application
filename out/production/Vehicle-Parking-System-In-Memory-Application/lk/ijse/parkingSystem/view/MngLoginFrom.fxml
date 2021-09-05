@@ -14,8 +14,8 @@
 
 <AnchorPane fx:id="apLogin" prefHeight="461.0" prefWidth="458.0" style="-fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.MngLoginFromController">
    <children>
-      <Label layoutX="12.0" layoutY="47.0" opacity="0.55" pickOnBounds="false" prefHeight="367.0" prefWidth="434.0" style="-fx-background-color: #c67aff; -fx-background-radius: 20px;" />
-      <Button fx:id="btnLogOut" layoutX="65.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="CANCEL" textFill="WHITE">
+      <Label layoutX="12.0" layoutY="47.0" opacity="0.63" pickOnBounds="false" prefHeight="367.0" prefWidth="434.0" style="-fx-background-color: #138D75; -fx-background-radius: 20px;" />
+      <Button fx:id="btnLogOut" layoutX="65.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #0E6655; -fx-background-radius: 8px;" text="CANCEL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -23,9 +23,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow blurType="GAUSSIAN" height="63.9" offsetX="5.0" offsetY="4.0" radius="29.6625" spread="0.24" width="56.75">
+            <DropShadow height="37.68" radius="16.552500000000002" width="30.53">
                <color>
-                  <Color red="0.3597504794597626" green="0.13111111521720886" blue="0.621052622795105" />
+                  <Color red="0.06962963193655014" green="0.4000000059604645" blue="0.16874073445796967" />
                </color>
             </DropShadow>
          </effect>
@@ -38,7 +38,7 @@
          <font>
             <Font size="15.0" />
          </font></PasswordField>
-      <Button fx:id="btnLogIn" layoutX="241.0" layoutY="343.0" mnemonicParsing="false" onAction="#logInOnAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="LOG IN" textFill="WHITE">
+      <Button fx:id="btnLogIn" layoutX="241.0" layoutY="343.0" mnemonicParsing="false" onAction="#logInOnAction" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: #0E6655; -fx-background-radius: 8px;" text="LOG IN" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -46,9 +46,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow blurType="GAUSSIAN" height="63.9" offsetX="5.0" offsetY="4.0" radius="29.6625" spread="0.24" width="56.75">
+            <DropShadow height="37.68" radius="16.552500000000002" width="30.53">
                <color>
-                  <Color red="0.3597504794597626" green="0.13111111521720886" blue="0.621052622795105" />
+                  <Color red="0.06962963193655014" green="0.4000000059604645" blue="0.16874073445796967" />
                </color>
             </DropShadow>
          </effect>

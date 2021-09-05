@@ -18,14 +18,14 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnLogin" layoutX="147.0" layoutY="307.0" mnemonicParsing="false" onAction="#addVehicleOnAction" prefHeight="38.0" prefWidth="351.0" style="-fx-background-color: #4b0082; -fx-background-radius: 8px;" text="ADD VEHICLE" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="147.0" layoutY="307.0" mnemonicParsing="false" onAction="#addVehicleOnAction" prefHeight="38.0" prefWidth="351.0" style="-fx-background-color: #0E6655; -fx-background-radius: 8px;" text="ADD VEHICLE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
          <effect>
-            <DropShadow height="56.75" offsetX="6.0" offsetY="6.0" radius="27.875" spread="0.29" width="56.75">
+            <DropShadow height="26.21" offsetX="3.0" offsetY="3.0" radius="11.415" width="21.45">
                <color>
-                  <Color red="0.42089733481407166" green="0.09890837967395782" blue="0.621052622795105" />
+                  <Color red="0.06666667014360428" green="0.4736842215061188" blue="0.27695906162261963" />
                </color>
             </DropShadow>
          </effect>
@@ -33,7 +33,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ComboBox fx:id="comboVehicleType" layoutX="147.0" layoutY="247.0" prefHeight="27.0" prefWidth="351.0" promptText="Select Vehicle Type" style="-fx-background-color: #c67aff;" />
+      <ComboBox fx:id="comboVehicleType" layoutX="147.0" layoutY="247.0" prefHeight="27.0" prefWidth="351.0" promptText="Select Vehicle Type" style="-fx-background-color: #138D75; -fx-background-radius: 5px;" />
       <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="196.0" prefHeight="27.0" prefWidth="128.0" text="No of Passengers " textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -44,10 +44,10 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtMaxWeight" layoutX="217.0" layoutY="141.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
-      <TextField fx:id="txtPassengers" layoutX="217.0" layoutY="194.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
-      <TextField fx:id="txtNumber" layoutX="216.0" layoutY="91.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #c67aff;" />
-      <Label prefHeight="50.0" prefWidth="646.0" style="-fx-background-color: #4b0082;" text="       ADD VEHICLE" textFill="WHITE">
+      <TextField fx:id="txtMaxWeight" layoutX="217.0" layoutY="141.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #138D75; -fx-background-radius: 5px;" />
+      <TextField fx:id="txtPassengers" layoutX="217.0" layoutY="194.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #138D75; -fx-background-radius: 5px;" />
+      <TextField fx:id="txtNumber" layoutX="216.0" layoutY="91.0" prefHeight="30.0" prefWidth="351.0" style="-fx-background-color: #138D75; -fx-background-radius: 5px;" />
+      <Label prefHeight="50.0" prefWidth="646.0" style="-fx-background-color: #0E6655;" text="       ADD VEHICLE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
