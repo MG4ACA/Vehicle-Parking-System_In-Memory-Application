@@ -43,16 +43,16 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" layoutX="224.0" layoutY="75.0" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
-      <TextField fx:id="txtNIC" layoutX="224.0" layoutY="112.0" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
-      <TextField fx:id="txtLicense" layoutX="224.0" layoutY="154.0" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
-      <TextField fx:id="txtAddress" layoutX="224.0" layoutY="193.0" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
+      <TextField fx:id="txtName" layoutX="224.0" layoutY="75.0"  onKeyReleased="#nameOnKeyTyped" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
+      <TextField fx:id="txtNIC" layoutX="224.0" layoutY="112.0" onKeyReleased="#nicOnKeyTyped" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
+      <TextField fx:id="txtLicense" layoutX="224.0" layoutY="154.0" onKeyReleased="#licenseOnKeyTyped" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
+      <TextField fx:id="txtAddress" layoutX="224.0" layoutY="193.0" onKeyReleased="#addressOnKeyTyped" prefHeight="57.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
       <Label alignment="CENTER_RIGHT" layoutX="78.0" layoutY="258.0" prefHeight="27.0" prefWidth="128.0" text="Contact No" textAlignment="RIGHT">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtContact" layoutX="224.0" layoutY="259.0" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
+      <TextField fx:id="txtContact" layoutX="224.0" layoutY="259.0" onKeyReleased="#contactOnKeyTyped" prefHeight="27.0" prefWidth="351.0" style="-fx-background-color: #c67aff; -fx-background-radius: 6px;" />
       <Label prefHeight="50.0" prefWidth="646.0" style="-fx-background-color: #4b0082;" text="       ADD DRIVER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />

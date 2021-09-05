@@ -97,7 +97,8 @@ public class ManagerDashBoardFormController {
 
     public void logOutOnAction(ActionEvent actionEvent) throws IOException {
         setUi("DashBoardForm");
-
+        Stage window = (Stage) btnLogOut.getScene().getWindow();
+        window.close();
     }
 
 

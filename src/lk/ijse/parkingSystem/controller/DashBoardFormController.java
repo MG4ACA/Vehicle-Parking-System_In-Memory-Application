@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.parkingSystem.memory.*;
 import lk.ijse.parkingSystem.model.*;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -36,33 +35,35 @@ public class DashBoardFormController {
     public Label lblRealTime;
     public ArrayList<Vehicle> arrayVehicles;
     public ArrayList<Driver> arrayDrivers;
-    public  ArrayList<InParking> arrayInParking;
+    public ArrayList<InParking> arrayInParking;
     public Button btnLogIn;
     public Button btnOnDelivery;
     public Button btnParkVehicle;
     public AnchorPane anchorPane;
 
-    public void initialize(){
+    public void initialize() {
         generateRealTime();
         arrayDrivers = DriverArray.getInstance().getArrayDrivers();
         arrayVehicles = VehicleArray.getInstance().getArrayVehicles();
-        arrayInParking  = InParkingArray.getInstance().getArrayInParking();
+        arrayInParking = InParkingArray.getInstance().getArrayInParking();
 
         loadDriverComboBox();
         loadVehicleComboBox();
     }
 
 
-
     public void parkVehicleOnAction(ActionEvent actionEvent) {
-
-        boolean b = InParkingArray.getInstance().setArrayInParking(new InParking((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), lblParkingSlot.getText(), getDate()));
-        if (b){
-            OnDeliveryArray.getInstance().removeArraySlots((String) comboSelectVehicle.getValue());
-            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
-            clearFields();
-        }else {
-            new Alert(Alert.AlertType.WARNING,"Something Wrong").show();
+        if (comboSelectVehicle.getValue() != null) {
+            boolean b = InParkingArray.getInstance().setArrayInParking(new InParking((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), lblParkingSlot.getText(), getDate()));
+            if (b) {
+                OnDeliveryArray.getInstance().removeArraySlots((String) comboSelectVehicle.getValue());
+                new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
+                clearFields();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Something Wrong").show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please Select Vehicle").show();
         }
     }
 
@@ -70,6 +71,7 @@ public class DashBoardFormController {
         lblVehicleType.setText("");
         lblParkingSlot.setText("");
         comboSelectVehicle.setValue(null);
+        comboDriver.setValue(null);
     }
 
     private String getDate() {
@@ -79,47 +81,60 @@ public class DashBoardFormController {
     }
 
     public void onDeliveryShiftOnAction(ActionEvent actionEvent) {
-        boolean b = OnDeliveryArray.getInstance().setArrayOnDelivery(new OnDelivery((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), (String) comboDriver.getValue(), getDate()));
-        if (b){
-            InParkingArray.getInstance().removeArraySlots((String)comboSelectVehicle.getValue() );
-            new Alert(Alert.AlertType.CONFIRMATION,"Success").show();
-            clearFields();
-        }else {
-            new Alert(Alert.AlertType.WARNING,"Something Wrong").show();
+        if (comboSelectVehicle.getValue() != null) {
+            if (comboDriver.getValue() != null) {
+                boolean b = OnDeliveryArray.getInstance().setArrayOnDelivery(new OnDelivery((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), (String) comboDriver.getValue(), getDate()));
+                if (b) {
+                    InParkingArray.getInstance().removeArraySlots((String) comboSelectVehicle.getValue());
+                    new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
+                    clearFields();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Something Wrong").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Please Select Driver").show();
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please Select Vehicle").show();
+
         }
+
     }
 
     public void managementLogInOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/MngLoginFrom.fxml"))));
         stage.show();
+        Stage window = (Stage) btnLogIn.getScene().getWindow();
+        window.close();
+
     }
 
-    void loadDriverComboBox(){
+    void loadDriverComboBox() {
         ObservableList<String> list = FXCollections.observableArrayList();
         for (Driver driver : arrayDrivers
-                ) {
+        ) {
             list.add(driver.getDriverName());
         }
         comboDriver.setItems(list);
     }
 
     private void loadVehicleComboBox() {
-        ObservableList<String> list=FXCollections.observableArrayList();
-        for (Vehicle vehicle:arrayVehicles
-             ) {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        for (Vehicle vehicle : arrayVehicles
+        ) {
             list.add(vehicle.getVehicleNumber());
         }
         comboSelectVehicle.setItems(list);
     }
 
     private void generateRealTime() {
-        lblRealDate.setText( LocalDate.now().toString());
-        Timeline timeline = new Timeline( new KeyFrame( Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "hh:mm:ss a");
-            lblRealTime.setText( LocalDateTime.now().format( formatter));
+        lblRealDate.setText(LocalDate.now().toString());
+        Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+            lblRealTime.setText(LocalDateTime.now().format(formatter));
         }), new KeyFrame(Duration.seconds(1)));
-        timeline.setCycleCount( Animation.INDEFINITE);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
 
@@ -127,30 +142,30 @@ public class DashBoardFormController {
         btnParkVehicle.setDisable(false);
         btnOnDelivery.setDisable(false);
 
-        for (Vehicle vehicle:arrayVehicles) {
-             if (comboSelectVehicle.getValue()==vehicle.getVehicleNumber()){
+        for (Vehicle vehicle : arrayVehicles) {
+            if (comboSelectVehicle.getValue() == vehicle.getVehicleNumber()) {
                 lblVehicleType.setText(vehicle.getVehicleType());
                 loadParkSlotLabel();
                 break;
-             }
+            }
         }
         ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayInParking();
         for (InParking inParking : arrayInParking) {
-            if (comboSelectVehicle.getValue()==inParking.getVehicleNumber()){
+            if (comboSelectVehicle.getValue() == inParking.getVehicleNumber()) {
                 btnParkVehicle.setDisable(true);
             }
         }
         ArrayList<OnDelivery> arrayOnDelivery = OnDeliveryArray.getInstance().getArrayOnDelivery();
-        for (OnDelivery  onDelivery: arrayOnDelivery) {
-            if (comboSelectVehicle.getValue()==onDelivery.getVehicleNumber()){
+        for (OnDelivery onDelivery : arrayOnDelivery) {
+            if (comboSelectVehicle.getValue() == onDelivery.getVehicleNumber()) {
                 btnOnDelivery.setDisable(true);
             }
         }
     }
 
     private void loadParkSlotLabel() {
-        switch ( lblVehicleType.getText()){
-            case "Bus" :
+        switch (lblVehicleType.getText()) {
+            case "Bus":
                 lblParkingSlot.setText("14");
                 break;
             case "Van":
@@ -168,37 +183,6 @@ public class DashBoardFormController {
     }
 
     private String vanSlotSelector() {
-//        ArrayList<Integer> car=new ArrayList();
-//        car.add(1);
-//        car.add(2);
-//        car.add(3);
-//        car.add(4);
-//        car.add(12);
-//        car.add(13);
-//
-//
-//        ArrayList<Integer> pCar = new ArrayList<>();
-//
-//        ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayOnDelivery();
-//        for (InParking inParking : arrayInParking) {
-//            if (inParking.getVehicleType()=="Van"){
-//                pCar.add(Integer.valueOf(inParking.getParkingSlot()));
-//            }
-//        }
-//
-//        for (int t: pCar) {
-//            int z=0;
-//            for (int i : car) {
-//                if (i==t){
-//                    car.remove(z);
-//                    break;
-//                }
-//                z++;
-//            }
-//        }
-//
-//        sortCarSlot(car);
-//
         return String.valueOf(Car.getInstance().getArrayCar());
 
     }

@@ -12,7 +12,14 @@
 <AnchorPane fx:id="anchorPane" prefHeight="475.0" prefWidth="638.0" style="-fx-background-color: #ced6e0;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.parkingSystem.controller.DashBoardFormController">
 
    <children>
-      <Label layoutX="17.0" layoutY="50.0" pickOnBounds="false" prefHeight="410.0" prefWidth="679.0" style="-fx-background-color: #ffffff; -fx-background-radius: 13px;" />
+      <Label layoutX="22.0" layoutY="64.0" pickOnBounds="false" prefHeight="386.0" prefWidth="667.0" style="-fx-background-color: #ffffff; -fx-background-radius: 13px;">
+         <effect>
+            <DropShadow height="69.86" radius="37.11" spread="0.3" width="80.58">
+               <color>
+                  <Color red="0.5400325059890747" green="0.13294346630573273" blue="0.6526315808296204" />
+               </color>
+            </DropShadow>
+         </effect></Label>
       <Label prefHeight="50.0" prefWidth="711.0" style="-fx-background-color: #4b0082;" text="    PARKING SYSTEM" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
