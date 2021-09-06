@@ -6,10 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.parkingSystem.dao.CrudDAO;
+import lk.ijse.parkingSystem.dao.custom.impl.DriverDAOImpl;
 import lk.ijse.parkingSystem.memory.DriverArray;
 import lk.ijse.parkingSystem.model.Driver;
-
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class DriverAddFormController {
     public TextField txtName;
@@ -18,6 +19,8 @@ public class DriverAddFormController {
     public TextField txtAddress;
     public TextField txtContact;
     public AnchorPane apAddDriver;
+    private final CrudDAO driverDAO = new DriverDAOImpl();
+
 
     public void addDriverOnAction(ActionEvent actionEvent) {
 //        if (Pattern.compile("^[A-z]{1,20} [A-z]{1,20}$").matcher(txtName.getText()).matches()) {
@@ -25,15 +28,33 @@ public class DriverAddFormController {
 //                if (Pattern.compile("^^[B][0-9]{7}$").matcher(txtNIC.getText()).matches()) {
 //                    if (Pattern.compile("^[#.0-9a-zA-Z\\s,-]+$").matcher(txtAddress.getText()).matches()) {
 //                        if (Pattern.compile("^[0-9]{10}$").matcher(txtContact.getText()).matches()) {
+        ArrayList<Driver> arrayDrivers = DriverArray.getInstance().getArrayDrivers();
+        boolean nic=true;
+        String nicText = txtNIC.getText();
+        for (Driver driver:arrayDrivers
+             ) {
+            if (nicText.equals( driver.getNic())) {
+                nic=false;
+            }
+        }
+        if (nic) {
+            try {
+                boolean b = driverDAO.add((new Driver(txtName.getText(), nicText, txtLicense.getText(), txtAddress.getText(), txtContact.getText())));
+                if (b) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Driver Saved").show();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Driver Not Saved").show();
+                }
+                Stage stage = (Stage) apAddDriver.getScene().getWindow();
+                stage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-                            boolean b = DriverArray.getInstance().setArrayDrivers(new Driver(txtName.getText(), txtNIC.getText(), txtLicense.getText(), txtAddress.getText(), txtContact.getText()));
-                            if (b) {
-                                new Alert(Alert.AlertType.CONFIRMATION, "Driver Saved").show();
-                            } else {
-                                new Alert(Alert.AlertType.WARNING, "Driver Not Saved").show();
-                            }
-                            Stage stage = (Stage) apAddDriver.getScene().getWindow();
-                            stage.close();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Driver Already Exist !").show();
+        }
+
 //                        } else {
 //                            new Alert(Alert.AlertType.WARNING, "Validation Error").show();
 //                    }else {

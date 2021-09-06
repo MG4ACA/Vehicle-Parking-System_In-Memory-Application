@@ -14,6 +14,7 @@ public class OnDeliveryArray {
 
     }
 
+
     public static OnDeliveryArray getInstance() {
         if (arrays==null){
             arrays=new OnDeliveryArray();
@@ -25,6 +26,7 @@ public class OnDeliveryArray {
     public  ArrayList<OnDelivery> getArrayOnDelivery() {
         return arrayOnDelivery;
     }
+
 
     public boolean setArrayOnDelivery(OnDelivery onDelivery) {
         arrayOnDelivery.add(onDelivery);

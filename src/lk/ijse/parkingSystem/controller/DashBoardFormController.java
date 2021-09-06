@@ -15,6 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.parkingSystem.dao.CrudDAO;
+import lk.ijse.parkingSystem.dao.custom.impl.InParkingDAOImpl;
+import lk.ijse.parkingSystem.dao.custom.impl.OnDeliveryDAOImpl;
 import lk.ijse.parkingSystem.memory.*;
 import lk.ijse.parkingSystem.model.*;
 import java.io.IOException;
@@ -40,6 +43,9 @@ public class DashBoardFormController {
     public Button btnOnDelivery;
     public Button btnParkVehicle;
     public AnchorPane anchorPane;
+    private final CrudDAO inParkingDAO= new InParkingDAOImpl();
+    private final CrudDAO onDeliveryDAO= new OnDeliveryDAOImpl();
+
 
     public void initialize() {
         generateRealTime();
@@ -51,17 +57,24 @@ public class DashBoardFormController {
         loadVehicleComboBox();
     }
 
-
     public void parkVehicleOnAction(ActionEvent actionEvent) {
         if (comboSelectVehicle.getValue() != null) {
-            boolean b = InParkingArray.getInstance().setArrayInParking(new InParking((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), lblParkingSlot.getText(), getDate()));
-            if (b) {
-                OnDeliveryArray.getInstance().removeArraySlots((String) comboSelectVehicle.getValue());
-                new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
-                clearFields();
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Something Wrong").show();
+            boolean b = false;
+            try {
+                b = inParkingDAO.add(new InParking((String) comboSelectVehicle.getValue(), lblVehicleType.getText(), lblParkingSlot.getText(), getDate()));
+                if (b) {
+
+                    onDeliveryDAO.delete(comboSelectVehicle.getValue());
+//                    OnDeliveryArray.getInstance().removeArraySlots( comboSelectVehicle.getValue());
+                    new Alert(Alert.AlertType.CONFIRMATION, "Success").show();
+                    clearFields();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Something Wrong").show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         } else {
             new Alert(Alert.AlertType.WARNING, "Please Select Vehicle").show();
         }
@@ -149,17 +162,28 @@ public class DashBoardFormController {
                 break;
             }
         }
-        ArrayList<InParking> arrayInParking = InParkingArray.getInstance().getArrayInParking();
-        for (InParking inParking : arrayInParking) {
-            if (comboSelectVehicle.getValue() == inParking.getVehicleNumber()) {
-                btnParkVehicle.setDisable(true);
+        ArrayList<InParking> arrayInParking = null;
+        try {
+            arrayInParking = inParkingDAO.getAll();
+            for (InParking inParking : arrayInParking) {
+                if (comboSelectVehicle.getValue() == inParking.getVehicleNumber()) {
+                    btnParkVehicle.setDisable(true);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        ArrayList<OnDelivery> arrayOnDelivery = OnDeliveryArray.getInstance().getArrayOnDelivery();
-        for (OnDelivery onDelivery : arrayOnDelivery) {
-            if (comboSelectVehicle.getValue() == onDelivery.getVehicleNumber()) {
-                btnOnDelivery.setDisable(true);
+
+        ArrayList<OnDelivery> arrayOnDelivery = null;
+        try {
+            arrayOnDelivery = onDeliveryDAO.getAll();
+            for (OnDelivery onDelivery : arrayOnDelivery) {
+                if (comboSelectVehicle.getValue() == onDelivery.getVehicleNumber()) {
+                    btnOnDelivery.setDisable(true);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

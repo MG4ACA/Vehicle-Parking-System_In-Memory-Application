@@ -3,18 +3,19 @@ package lk.ijse.parkingSystem.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.parkingSystem.dao.CrudDAO;
+import lk.ijse.parkingSystem.dao.custom.impl.VehicleDAOImpl;
 import lk.ijse.parkingSystem.memory.VehicleArray;
 import lk.ijse.parkingSystem.model.Vehicle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class VehicleAddFormController {
@@ -24,14 +25,15 @@ public class VehicleAddFormController {
     public ComboBox comboVehicleType;
     public AnchorPane apAddVehicle;
     public Button btnLogin;
+    private final CrudDAO vehicleDAO=new VehicleDAOImpl();
 
-    public void initialize(){
+    public void initialize() {
         loadComboBox();
         focusInputFields();
     }
 
     private void loadComboBox() {
-        ObservableList<String> list= FXCollections.observableArrayList();
+        ObservableList<String> list = FXCollections.observableArrayList();
         list.add("Bus");
         list.add("Van");
         list.add("Cargo Lorry");
@@ -66,23 +68,43 @@ public class VehicleAddFormController {
 
 
     public void addVehicleOnAction(ActionEvent actionEvent) throws IOException {
-        if (Pattern.compile("^[A-Z-0-9]{0,10}$").matcher(txtNumber.getText()).matches()) {
-            if (Pattern.compile("^[0-9]{2,5}$").matcher(txtMaxWeight.getText()).matches()) {
-                if (Pattern.compile("^[0-9]{0,3}$").matcher(txtPassengers.getText()).matches()) {
-                    if (comboVehicleType.getValue()!=null) {
-                        boolean b = VehicleArray.getInstance().setArrayVehicles(new Vehicle(txtNumber.getText(), (String) comboVehicleType.getValue(), txtMaxWeight.getText(), Integer.parseInt(txtPassengers.getText())));
-                        if (b){
-                            new Alert(Alert.AlertType.CONFIRMATION,"Vehicle Saved").show();
-                        }else {
-                            new Alert(Alert.AlertType.WARNING,"Vehicle Not Saved").show();
-                        }
-                        Stage window = (Stage) btnLogin.getScene().getWindow();
-                        window.close();
-                    } else {
-                        new Alert(Alert.AlertType.WARNING, "Select Vehicle Type").show();
-                    }
-                }
-                }
+        ArrayList<Vehicle> arrayVehicles = VehicleArray.getInstance().getArrayVehicles();
+        boolean number = true;
+        String vehicleNo = txtNumber.getText();
+        for (Vehicle vehicle : arrayVehicles) {
+            System.out.println(vehicleNo+"  "+vehicle.getVehicleNumber());
+            if (vehicleNo.equals(vehicle.getVehicleNumber())) {
+                number = false;
+                System.out.println("Duplicate");
             }
         }
+        if (Pattern.compile("^[A-Z-0-9]{0,10}$").matcher(txtNumber.getText()).matches()) {
+            if (number) {
+                if (Pattern.compile("^[0-9]{2,5}$").matcher(txtMaxWeight.getText()).matches()) {
+                    if (Pattern.compile("^[0-9]{0,3}$").matcher(txtPassengers.getText()).matches()) {
+                        if (comboVehicleType.getValue() != null) {
+                            boolean b = false;
+                            try {
+                                b = vehicleDAO.add(new Vehicle(txtNumber.getText(), (String) comboVehicleType.getValue(), txtMaxWeight.getText(), Integer.parseInt(txtPassengers.getText())));
+                                if (b) {
+                                    new Alert(Alert.AlertType.CONFIRMATION, "Vehicle Saved").show();
+                                } else {
+                                    new Alert(Alert.AlertType.WARNING, "Vehicle Not Saved").show();
+                                }
+                                Stage window = (Stage) btnLogin.getScene().getWindow();
+                                window.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Select Vehicle Type").show();
+                        }
+                    }
+                }
+            }else {
+                new Alert(Alert.AlertType.WARNING, "Vehicle Already Exist !").show();
+            }
+        }
+
+    }
 }

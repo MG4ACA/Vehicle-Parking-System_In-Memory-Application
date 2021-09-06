@@ -32,10 +32,7 @@ public class InParkingArray {
 
     }
 
-    public void removeArraySlots(String vehicleNumber) {
-        boolean b = arrayInParking.removeIf(n -> (n.getVehicleNumber() == vehicleNumber));
-        for (InParking inParking1:arrayInParking) {
-            System.out.println(inParking1);
-        }
+    public boolean removeArraySlots(String vehicleNumber) {
+        return arrayInParking.removeIf(n -> (n.getVehicleNumber() == vehicleNumber));
     }
 }

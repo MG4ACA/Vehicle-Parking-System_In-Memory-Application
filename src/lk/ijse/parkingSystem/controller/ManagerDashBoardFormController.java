@@ -11,6 +11,9 @@ package lk.ijse.parkingSystem.controller;
         import javafx.scene.control.TableView;
         import javafx.scene.control.cell.PropertyValueFactory;
         import javafx.stage.Stage;
+        import lk.ijse.parkingSystem.dao.CrudDAO;
+        import lk.ijse.parkingSystem.dao.custom.impl.InParkingDAOImpl;
+        import lk.ijse.parkingSystem.dao.custom.impl.OnDeliveryDAOImpl;
         import lk.ijse.parkingSystem.memory.InParkingArray;
         import lk.ijse.parkingSystem.memory.OnDeliveryArray;
         import lk.ijse.parkingSystem.model.InParking;
@@ -35,6 +38,8 @@ public class ManagerDashBoardFormController {
     public TableColumn colOVType;
     public TableColumn colDriver;
     public TableColumn colLeftTime;
+    private final CrudDAO InParkingDAO= new InParkingDAOImpl();
+    private final CrudDAO onDeliveryDAO= new OnDeliveryDAOImpl();
 
     public void initialize(){
         comboSelectType.getItems().addAll("In Parking", "On Delivery");
@@ -53,27 +58,31 @@ public class ManagerDashBoardFormController {
     }
 
     private void loadOnDeliveryTable() {
-        arrayOnDelivery= OnDeliveryArray.getInstance().getArrayOnDelivery();
+        try {
+            arrayOnDelivery= onDeliveryDAO.getAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ObservableList<OnDelivery> list=FXCollections.observableArrayList();
 
         for (OnDelivery onDelivery:arrayOnDelivery) {
             list.add(onDelivery);
-//            System.out.println(onDelivery);
         }
         tblOnDelivery.setItems(list);
 
     }
 
     private void loadInParkingTable() {
-        arrayInParking = InParkingArray.getInstance().getArrayInParking();
-        ObservableList<InParking> list= FXCollections.observableArrayList();
-
-        for (InParking inParking:arrayInParking) {
-            list.add(inParking);
-//            System.out.println(inParking);
+        try {
+            arrayInParking = InParkingDAO.getAll();
+            ObservableList<InParking> list= FXCollections.observableArrayList();
+            for (InParking inParking:arrayInParking) {
+                list.add(inParking);
+                tblInParking.setItems(list);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        tblInParking.setItems(list);
-
     }
 
     public void addVehicleOnAction(ActionEvent actionEvent) throws IOException {
